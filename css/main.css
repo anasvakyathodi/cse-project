@@ -568,3 +568,21 @@ iframe {
 .lst{
   width: 75%;
 }
+input[type='file'] {
+   position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+.btn-black {
+	background-color: #000;
+	border: none;
+	border-radius: 25px;
+}
+.btn-black:hover {
+	background-color: #000;
+	border: none;
+	border-radius: 25px;
+}
+
