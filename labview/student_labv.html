@@ -41,45 +41,91 @@
       <span class="navbar-brand mb-0 h2">Hi, Anand</span>
     </div>
   </nav>
-  <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<p class="h2 hdg">Experiment 5</p>
-			<p class="hdg">Implementation of two pass assembler in C</p>
-		</div>
-	</div>
-  <div class="row">
-	<div class="col-md-6">
-		<div class="custom-file">
-			<h2>Upload code files:</h2><br>
-			<form class="md-form">
-				<div class="file btn btn-lg btn-primary btn-black">Choose Files
-					<input type="file" name="file"/>
-				</div>
-			</form>
-		</div>
-	</div>
-	<div class="col-md-6">
-		<div class="custom-file">
-			<h2>Upload output files:</h2><br>
-			<form class="md-form">
-				<div class="file btn btn-lg btn-primary btn-black">Choose Files
-					<input type="file" name="file"/>
-				</div>
-			</form>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-		<br><br>
-			<button type="button" class="btn btn-success">SUBMIT</button>
-		</div>
-	</div>
+  <p class="h2 hdg">Experiment 5</p>
+  <p class="hdg">Implementation of two pass assembler in C</p>
+  <p class="h3 hdg">code</p>
+  <div class="text-center">
+  <code>  <textarea name="name" rows="15" cols="100">
+      void PASS2()
+            {
+                  FILE *inter,*output;
+                  char record[30],part[6],value[5];
+                  int currtxtlen=0,foundopcode,foundoperand,chk,operandaddr,recaddr=0;
+                  inter=fopen("inter.txt","r");
+                  output=fopen("output.txt","w");
+                  fgets(line,20,inter);
+
+                  READ_LINE();
+                  if(!strcmp(opcode,"START")) fgets(line,20,inter);
+                 printf("\n\nCorresponding Object code is..\n");
+                 printf("\nH^ %s ^ %d ^ %d ",programname,startaddr,length);
+                 fprintf(output,"\nH^ %s ^ %d ^ %d ",programname,startaddr,length);
+                 recaddr=startaddr; record[0]='\0';
+                 while(strcmp(line,"END")!=0)
+                            {
+                                               operandaddr=foundoperand=foundopcode=0;
+                                               value[0]=part[0]= '\0';
+                                               READ_LINE();
+             for(chk=0;chk<3;chk++)
+               {
+                 if(!strcmp(opcode,myoptab[chk].code))
+                 {
+                 foundopcode=1;
+                 strcpy(part,myoptab[chk].objcode);
+
+               if(operand[0]!='\0')
+               {
+               for(chk=0;chk<symcount;chk++)
+
+               if(!strcmp(mysymtab[chk].symbol,operand))
+               {
+               itoa(mysymtab[chk].addr,value,10);
+               strcat(part,value);
+               foundoperand=1;
+               }
+                if(!foundoperand)strcat(part,"err");
+                }
+                }
+                }
+                 if(!foundopcode)
+                 {
+                                 if(strcmp(opcode,"BYTE")==0 || strcmp(opcode,"WORD")||strcmp(opcode,"RESB"))
+                                 {strcat(part,operand);
+                                }}
+                 if((currtxtlen+strlen(part))<=8)
+                 {
+                  strcat(record,"^");
+                  strcat(record,part);
+
+                  currtxtlen+=strlen(part);
+                 }
+                  else
+                  {
+                   printf("\nT^ %d ^%d %s",recaddr,currtxtlen,record);
+                   fprintf(output,"\nT^ %d ^%d %s",recaddr,currtxtlen,record);
+                   recaddr+=currtxtlen;
+                   currtxtlen=strlen(part);
+                   strcpy(record,part);
+
+
+
+                  }
+            fgets(line,20,inter);
+                  }
+                        printf("\nT^ %d ^%d %s",recaddr,currtxtlen,record);
+                        fprintf(output,"\nT^ %d ^%d %s",recaddr,currtxtlen,record);
+                        printf("\nE^ %d\n",startaddr);
+                        fprintf(output,"\nE^ %d\n",startaddr);
+                        fclose(inter);
+                        fclose(output);
+         }</textarea></code>
+       </div>
+         <p class="h3 hdg">output</p>
+         <img class="center" src="..\images\output.png" alt="output" width="60%" align="center">
+
   </div>
-</div>
-</div>
-</div>
-  <!--===============================================================================================-->
+
+<!--===============================================================================================-->
   <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
   <!--===============================================================================================-->
   <script src="../vendor/animsition/js/animsition.min.js"></script>
